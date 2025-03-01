@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/errorHandler");
 const logger = require("./utils/logger");
 const { rateLimit } = require("express-rate-limit");
 const { RedisStore } = require("rate-limit-redis");
+const { connectToRabbitMQ } = require("./utils/rabbitmq");
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -64,6 +65,7 @@ app.use(errorHandler);
 
 async function startServer() {
   try {
+    await connectToRabbitMQ();
     app.listen(PORT, () => {
       logger.info(`Post service running on port ${PORT}`);
     });
