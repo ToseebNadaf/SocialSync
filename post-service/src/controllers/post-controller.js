@@ -16,7 +16,6 @@ async function invalidatePostCache(req, input) {
 const createPost = async (req, res) => {
   logger.info("Create post endpoint hit");
   try {
-    //validate the schema
     const { error } = validateCreatePost(req.body);
     if (error) {
       logger.warn("Validation error", error.details[0].message);
@@ -33,6 +32,13 @@ const createPost = async (req, res) => {
     });
 
     await newlyCreatedPost.save();
+
+    await publishEvent("post.created", {
+      postId: newlyCreatedPost._id.toString(),
+      userId: newlyCreatedPost.user.toString(),
+      content: newlyCreatedPost.content,
+      createdAt: newlyCreatedPost.createdAt,
+    });
 
     await invalidatePostCache(req, newlyCreatedPost._id.toString());
     logger.info("Post created successfully", newlyCreatedPost);
@@ -76,7 +82,6 @@ const getAllPosts = async (req, res) => {
       totalPosts: totalNoOfPosts,
     };
 
-    //save your posts in redis cache
     await req.redisClient.setex(cacheKey, 300, JSON.stringify(result));
 
     res.json(result);
