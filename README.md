@@ -36,6 +36,11 @@ SocialSync is composed of the following microservices:
 
 SocialSync is designed to be deployed using Docker. The `docker-compose.yml` file defines all the services and their dependencies.
 
+**Clone the Repository:**
+```
+  git clone https://github.com/your-username/SocialSync.git
+```
+
 **To deploy:**
 ```
   docker-compose up -d
