@@ -1,9 +1,9 @@
-# SocialSync
+# SocialSync - Microservice Social Media Backend Application
 
 **SocialSync** is a modern, scalable social media application built using a microservices architecture. It provides a seamless experience for users to connect, share, and interact. The application is designed with modularity and scalability in mind, leveraging technologies like Redis, RabbitMQ, Docker, Node.js, and Express.js.
 
 ## Features
-- **Microservices Architecture:** Modular and scalable design for easy maintenance and scaling
+- **Microservices Architecture:** Modular and scalable design for easy maintenance and scaling.
 - **API Gateway:** Centralized entry point for all client requests.
 - **User Authentication:** Secure identity management with JWT-based authentication.
 - **Post Management:** Create, update, delete, and retrieve posts.
@@ -30,7 +30,9 @@ SocialSync is composed of the following microservices:
 - **RabbitMQ:** Message broker for asynchronous communication.
 - **Docker:** Containerization for easy deployment and scaling.
 - **JWT:** JSON Web Tokens for secure authentication.
-- **MongoDB/Postgres:** Database for storing user, post, and media data (depending on the service).s.
+- **MongoDB/Postgres:** Database for storing user, post, and media data (depending on the service).
+
+### **Note -** Go to each service to get API related info
 
 ## Deployment with Docker
 
